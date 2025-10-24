@@ -22,6 +22,7 @@ services:
     restart: on-failure
     networks:
       - springboot-mysql-net
+    command: sh -c "sleep 15 && java -jar /app/backend.jar"
 
   frontend:
     image: sravanibalaraju/docker-frontend:latest
