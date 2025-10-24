@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   mysqldb:
     image: mysql:8
@@ -7,9 +9,10 @@ services:
       MYSQL_DATABASE: petcare1_db
     ports:
       - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
     networks:
       - springboot-mysql-net
-
 
   backend:
     image: sravanibalaraju/docker-backend:latest
@@ -21,6 +24,9 @@ services:
     restart: on-failure
     networks:
       - springboot-mysql-net
+    environment:
+      MYSQL_ROOT_PASSWORD: Sravani@2006
+    command: ["sh", "/app/wait-for-mysql.sh", "mysqldb", "java", "-jar", "/app/backend.jar"]
 
   frontend:
     image: sravanibalaraju/docker-frontend:latest
