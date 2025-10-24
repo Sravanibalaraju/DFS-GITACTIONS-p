@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   mysqldb:
     image: mysql:8
@@ -14,15 +12,14 @@ services:
     networks:
       - springboot-mysql-net
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "--silent"]
-      interval: 10s
-      timeout: 5s
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
       retries: 10
       start_period: 30s
 
   backend:
-    image: sravanibalaraju/docker-backend:latest
-    container_name: springboot
+    image: sravanibalaraju/petcare-backend:latest
+    container_name: petcare-backend
     ports:
       - "2025:2017"
     depends_on:
@@ -37,8 +34,8 @@ services:
       - spring.datasource.password=Sravani@2006
 
   frontend:
-    image: sravanibalaraju/docker-frontend:latest
-    container_name: react
+    image: sravanibalaraju/petcare-frontend:latest
+    container_name: petcare-frontend
     ports:
       - "3000:80"
     depends_on:
