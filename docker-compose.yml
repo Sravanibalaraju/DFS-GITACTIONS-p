@@ -19,7 +19,7 @@ services:
 
   backend:
     image: sravanibalaraju/docker-backend:latest
-    container_name: expense-springboot
+    container_name: springboot
     ports:
       - "2025:2017"
     depends_on:
@@ -35,7 +35,7 @@ services:
 
   frontend:
     image: sravanibalaraju/docker-frontend:latest
-    container_name: expense-react
+    container_name: react
     ports:
       - "3000:3001"
     depends_on:
