@@ -3,8 +3,8 @@ services:
     image: mysql:8
     container_name: mysql-db
     environment:
-      MYSQL_ROOT_PASSWORD: docker
-      MYSQL_DATABASE: expensedb
+      MYSQL_ROOT_PASSWORD: Sravani@2006
+      MYSQL_DATABASE: petcare1_db
     ports:
       - "3307:3306"
     volumes:
@@ -18,7 +18,7 @@ services:
       start_period: 30s
 
   backend:
-    image: sravanibalaraju/docker-expense-backend:latest
+    image: sravanibalaraju/docker-backend:latest
     container_name: expense-springboot
     ports:
       - "2025:2017"
@@ -34,7 +34,7 @@ services:
       - spring.datasource.password=docker
 
   frontend:
-    image: sravanibalaraju/docker-expense-frontend:latest
+    image: sravanibalaraju/docker-frontend:latest
     container_name: expense-react
     ports:
       - "3000:3001"
